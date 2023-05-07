@@ -1,9 +1,9 @@
 import React from 'react';
-import Grow from '@material-ui/core/Grow';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import ClearIcon from '@material-ui/icons/Clear';
-import { withStyles } from '@material-ui/core/styles';
+import Grow from '@mui/material/Grow';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import ClearIcon from '@mui/icons-material/Clear';
+import { withStyles } from "tss-react/mui";
 
 const defaultSearchStyles = theme => ({
   main: {
@@ -65,4 +65,4 @@ class CustomSearchRender extends React.Component {
   }
 }
 
-export default withStyles(defaultSearchStyles, { name: 'CustomSearchRender' })(CustomSearchRender);
+export default withStyles(CustomSearchRender, defaultSearchStyles, { name: 'CustomSearchRender' });

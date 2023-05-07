@@ -1,22 +1,19 @@
 import React from 'react';
-import MuiTable from '@material-ui/core/Table';
+import MuiTable from '@mui/material/Table';
 import TablePagination from './TablePagination';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from 'tss-react/mui';
 import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(
-  () => ({
-    root: {
-      '@media print': {
-        display: 'none',
-      },
+const useStyles = makeStyles({ name: 'MUIDataTableFooter' })(() => ({
+  root: {
+    '@media print': {
+      display: 'none',
     },
-  }),
-  { name: 'MUIDataTableFooter' },
-);
+  },
+}));
 
 const TableFooter = ({ options, rowCount, page, rowsPerPage, changeRowsPerPage, changePage }) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { customFooter, pagination = true } = options;
 
   if (customFooter) {

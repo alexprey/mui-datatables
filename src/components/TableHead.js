@@ -1,30 +1,27 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { TableHead as MuiTableHead } from '@material-ui/core';
+import { makeStyles } from 'tss-react/mui';
 import clsx from 'clsx';
+import MuiTableHead from '@mui/material/TableHead';
 import React, { useState } from 'react';
 import TableHeadCell from './TableHeadCell';
 import TableHeadRow from './TableHeadRow';
 import TableSelectCell from './TableSelectCell';
 
-const useStyles = makeStyles(
-  theme => ({
-    main: {},
-    responsiveStacked: {
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
-      },
-    },
-    responsiveStackedAlways: {
+const useStyles = makeStyles({ name: 'MUIDataTableHead' })(theme => ({
+  main: {},
+  responsiveStacked: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
-    responsiveSimple: {
-      [theme.breakpoints.down('xs')]: {
-        display: 'none',
-      },
+  },
+  responsiveStackedAlways: {
+    display: 'none',
+  },
+  responsiveSimple: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
     },
-  }),
-  { name: 'MUIDataTableHead' },
-);
+  },
+}));
 
 const TableHead = ({
   columnOrder = null,
@@ -46,7 +43,7 @@ const TableHead = ({
   toggleSort,
   updateColumnOrder,
 }) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   if (columnOrder === null) {
     columnOrder = columns ? columns.map((item, idx) => idx) : [];

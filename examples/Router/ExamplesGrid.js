@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
-import {Card, CardContent, Grid, Typography} from "@material-ui/core";
+import {Card, CardContent, Grid, Typography} from "@mui/material";
 import React from "react";
 import examples from "../examples";
-import {withStyles} from "@material-ui/core/styles/index";
-import TextField from '@material-ui/core/TextField';
+import { withStyles } from "tss-react/mui";
+import TextField from '@mui/material/TextField';
 
 const styles = {
     container: {
@@ -85,4 +85,4 @@ class ExamplesGrid extends React.Component {
   }
 }
 
-export default withStyles(styles)(ExamplesGrid);
+export default withStyles(ExamplesGrid, styles);

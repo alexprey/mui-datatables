@@ -1,12 +1,12 @@
 import React from 'react';
 import { spy, stub } from 'sinon';
 import { mount, shallow } from 'enzyme';
-import { assert, expect, should } from 'chai';
+import { assert } from 'chai';
 import getTextLabels from '../src/textLabels';
 import TableHeadCell from '../src/components/TableHeadCell';
-import TableCell from '@material-ui/core/TableCell';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import HelpIcon from '@material-ui/icons/Help';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import HelpIcon from '@mui/icons-material/Help';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 

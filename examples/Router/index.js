@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles/index';
+import { createRoot } from 'react-dom/client';
+import { HashRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
+import { withStyles } from 'tss-react/mui';
 import ExamplesGrid from './ExamplesGrid';
 import examples from '../examples';
-import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const styles = {
   root: {
@@ -27,36 +27,40 @@ class Examples extends React.Component {
 
     var returnHomeStyle = { padding: '0px', margin: '20px 0 20px 0' };
 
+    const defaultTheme = createTheme();
+
     return (
-      <main className={classes.root}>
-        <div className={classes.contentWrapper}>
-          <Switch>
-            <Route path="/" exact render={() => <ExamplesGrid examples={examples} />} />
-            {Object.keys(examples).map((label, index) => (
-              <Route
-                key={index}
-                path={`/${label.replace(/\s+/g, '-').toLowerCase()}`}
-                exact
-                component={examples[label]}
-              />
-            ))}
-          </Switch>
-          <div>
-            {this.props.location.pathname !== '/' && (
-              <div style={returnHomeStyle}>
-                <Button color="primary" onClick={this.returnHome}>
-                  Back to Example Index
-                </Button>
-              </div>
-            )}
+      <ThemeProvider theme={defaultTheme}>
+        <main className={classes.root}>
+          <div className={classes.contentWrapper}>
+            <Switch>
+              <Route path="/" exact render={() => <ExamplesGrid examples={examples} />} />
+              {Object.keys(examples).map((label, index) => (
+                <Route
+                  key={index}
+                  path={`/${label.replace(/\s+/g, '-').toLowerCase()}`}
+                  exact
+                  component={examples[label]}
+                />
+              ))}
+            </Switch>
+            <div>
+              {this.props.location.pathname !== '/' && (
+                <div style={returnHomeStyle}>
+                  <Button color="primary" onClick={this.returnHome}>
+                    Back to Example Index
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </ThemeProvider>
     );
   }
 }
 
-const StyledExamples = withRouter(withStyles(styles)(Examples));
+const StyledExamples = withRouter(withStyles(Examples, styles));
 
 function App() {
   return (
@@ -65,5 +69,6 @@ function App() {
     </Router>
   );
 }
-
-ReactDOM.render(<App />, document.getElementById('app-root'));
+const container = document.getElementById('app-root');
+const root = createRoot(container);
+root.render(<App />);

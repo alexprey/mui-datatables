@@ -1,22 +1,19 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from 'tss-react/mui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TableFilterListItem from './TableFilterListItem';
 
-const useStyles = makeStyles(
-  () => ({
-    root: {
-      display: 'flex',
-      justifyContent: 'left',
-      flexWrap: 'wrap',
-      margin: '0px 16px 0px 16px',
-    },
-    chip: {
-      margin: '8px 8px 0px 0px',
-    },
-  }),
-  { name: 'MUIDataTableFilterList' },
-);
+const useStyles = makeStyles({ name: 'MUIDataTableFilterList' })(() => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'left',
+    flexWrap: 'wrap',
+    margin: '0px 16px 0px 16px',
+  },
+  chip: {
+    margin: '8px 8px 0px 0px',
+  },
+}));
 
 const TableFilterList = ({
   options,
@@ -28,7 +25,7 @@ const TableFilterList = ({
   customFilterListUpdate,
   ItemComponent = TableFilterListItem,
 }) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { serverSide } = options;
 
   const removeFilter = (index, filterValue, columnName, filterType, customFilterListUpdate = null) => {

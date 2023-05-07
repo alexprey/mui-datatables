@@ -1,9 +1,11 @@
 import React from 'react';
 import MUIDataTable from '../../src/';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { ThemeProvider } from '@mui/material/styles';
+import { withStyles } from 'tss-react/mui';
+import { createTheme } from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import clsx from 'clsx';
 
 const customStyles = theme => ({
@@ -28,35 +30,45 @@ class Example extends React.Component {
   }
 
   getMuiTheme = () =>
-    createMuiTheme({
-      overrides: {
+    createTheme({
+      components: {
         MUIDataTable: {
-          root: {
-            backgroundColor: '#AAF',
-          },
-          paper: {
-            boxShadow: 'none',
+          styleOverrides: {
+            root: {
+              backgroundColor: '#red',
+            },
+            paper: {
+              boxShadow: 'none',
+            },
           },
         },
         MuiToolbar: {
-          root: {
-            backgroundColor: '#f00',
+          styleOverrides: {
+            root: {
+              backgroundColor: '#f00',
+            },
           },
         },
         MuiTableCell: {
-          head: {
-            backgroundColor: 'purple',
+          styleOverrides: {
+            head: {
+              backgroundColor: 'purple',
+            },
           },
         },
         MUIDataTableSelectCell: {
-          headerCell: {
-            backgroundColor: 'blue',
+          styleOverrides: {
+            headerCell: {
+              backgroundColor: 'blue',
+            },
           },
         },
         MuiTableFooter: {
-          root: {
-            '& .MuiToolbar-root': {
-              backgroundColor: 'white',
+          styleOverrides: {
+            root: {
+              '& .MuiToolbar-root': {
+                backgroundColor: 'white',
+              },
             },
           },
         },
@@ -87,8 +99,8 @@ class Example extends React.Component {
                 [this.props.classes.NameCell]: value === 'Mel Brooks',
               }),
               style: {
-                //borderRight: '2px solid blue'
-              }
+                borderRight: '2px solid blue',
+              },
             };
           },
           setCellHeaderProps: value => {
@@ -191,7 +203,7 @@ class Example extends React.Component {
     };
 
     return (
-      <MuiThemeProvider theme={this.getMuiTheme()}>
+      <ThemeProvider theme={this.getMuiTheme()}>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -206,15 +218,20 @@ class Example extends React.Component {
           />
           <FormControlLabel
             control={
-              <Switch checked={this.state.vertical} onChange={this.toggleResponsive} value="vertical" color="primary" />
+              <Switch
+                checked={this.state.vertical}
+                onChange={this.toggleResponsive}
+                value="vertical"
+                color="primary"
+              />
             }
             label="Responsive Vertical Table"
           />
         </FormGroup>
         <MUIDataTable title={'ACME Employee list'} data={data} columns={columns} options={options} />
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 }
 
-export default withStyles(customStyles, { name: 'ExampleCard.js' })(Example);
+export default withStyles(Example, customStyles, { name: 'ExampleCardjs' });

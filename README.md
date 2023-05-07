@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/19170080/34070522-e15d32e2-e235-11e7-8af5-fa704cdcad56.png" />
 </div>
 
-# MUI-Datatables - Datatables for Material-UI
+# MUI-Datatables - Datatables for MUI (formerly Material-UI)
 
 [![Build Status](https://travis-ci.org/gregnb/mui-datatables.svg?branch=master)](https://travis-ci.org/gregnb/mui-datatables)
 [![NPM Downloads](https://img.shields.io/npm/dt/mui-datatables.svg?style=flat)](https://npmcharts.com/compare/mui-datatables?minimal=true)
@@ -18,29 +18,47 @@ Version 3 has been released! You can read about the [updates here](https://githu
 </div>
 
 # Table of contents
-* [Install](#install)
-* [Demo](#demo)
-* [Usage](#usage)
-* [API](#api)
-* [Customize Columns](#customize-columns)
-* [Plug-ins](#plug-ins)
-* [Customize Styling](#customize-styling)
-* [Custom Components](#custom-components)
-* [Remote Data](#remote-data)
-* [Localization](#localization)
-* [Contributing](#contributing)
-* [License](#licence)
-* [Thanks](#thanks)
+- [MUI-Datatables - Datatables for MUI (formerly Material-UI)](#mui-datatables---datatables-for-mui-formerly-material-ui)
+- [Table of contents](#table-of-contents)
+  - [Install](#install)
+  - [Compatibility](#compatibility)
+  - [Demo](#demo)
+  - [Usage](#usage)
+  - [API](#api)
+      - [&lt;MUIDataTable />](#muidatatable-)
+      - [Options:](#options)
+  - [Customize Columns](#customize-columns)
+      - [Column:](#column)
+      - [Column Options:](#column-options)
+  - [Plug-ins](#plug-ins)
+      - [Available Plug-ins:](#available-plug-ins)
+  - [Customize Styling](#customize-styling)
+  - [Custom Components](#custom-components)
+  - [Remote Data](#remote-data)
+  - [Localization](#localization)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Thanks](#thanks)
 
 ## Install
 
 `npm install mui-datatables --save`
 
-If your project doesn't already use them, you need to install `@material-ui/core` and `@material-ui/icons` as well.
+If your project doesn't already use them, you need to install mui v5 and it's icon pack:  
+`npm --save install @mui/material @emotion/react @emotion/styled @mui/icons-material`
+
+## Compatibility
+
+| mui-datatables | material-ui | Required Dependencies                               |                                         
+|----------------|-------------|-----------------------------------------------------|
+| ^2.0.0         | ^3.0.0      | `@material-ui/core`,`@material-ui/icons`            |
+| ^3.0.0         | ^4.10.0     | `@material-ui/core`,`@material-ui/icons`            |
+| ^3.8.0         | ^4.12.0     | `@material-ui/core`,`@material-ui/icons`            |
+| ^4.0.0         | ^5.9.3      | `@mui/material`,`@mui/icons-material`               |
 
 ## Demo
 
-[![Edit react-to-print](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/muidatatables-custom-toolbar-rvmcj?file=/index.js)
+[![Edit react-to-print](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/muidatatables-custom-toolbar-forked-j002q?file=/index.js)
 
 Browse live demos of all examples in this repo in [here](https://codesandbox.io/s/github/gregnb/mui-datatables)!
 
@@ -78,6 +96,7 @@ Or customize columns:
 
 ```js
 
+import React from "react"
 import MUIDataTable from "mui-datatables";
 
 const columns = [
@@ -146,7 +165,7 @@ The component accepts the following props:
 |:--:|:-----|:-----|
 |**`title`**|array|Title used to caption table
 |**`columns`**|array|Columns used to describe table. Must be either an array of simple strings or objects describing a column
-|**`data`**|array|Data used to describe table. Must be either an array containing objects of key/value pairs with values that are strings or numbers, or arrays of strings or numbers (Ex: data: [{"Name": "Joe", "Job Title": "Plumber", "Age": 30}, {"Name": "Jane", "Job Title": "Electrician", "Age": 45}] or data: [["Joe", "Plumber", 30], ["Jane", "Electrician", 45]]). The **customBodyRender** and **customBodyRenderLite** options can be used to control the data diaplay.
+|**`data`**|array|Data used to describe table. Must be either an array containing objects of key/value pairs with values that are strings or numbers, or arrays of strings or numbers (Ex: data: [{"Name": "Joe", "Job Title": "Plumber", "Age": 30}, {"Name": "Jane", "Job Title": "Electrician", "Age": 45}] or data: [["Joe", "Plumber", 30], ["Jane", "Electrician", 45]]). The **customBodyRender** and **customBodyRenderLite** options can be used to control the data display.
 |**`options`**|object|Options used to describe table
 |**`components`**|object|Custom components used to render the table
 
@@ -166,7 +185,7 @@ The component accepts the following props:
 |**`customTableBodyFooterRender`**|function||Render a footer under the table body but above the table's standard footer. This is useful for creating footers for individual columns. [Example](https://github.com/gregnb/mui-datatables/blob/master/examples/customize-footer/index.js)
 |**`customToolbar`**|function||Render a custom toolbar `function({displayData}) => React Component`
 |**`customToolbarSelect`**|function||Render a custom selected rows toolbar. `function(selectedRows, displayData, setSelectedRows) => void`
-|**`download`**|boolean or string|true|Show/hide download icon from toolbar.  Possible values:<p><ul><li>true: Button is visiable and clickable.</li><li>false: Button is not visible.</li><li>disabled: Button is visible, but not clickable.</li></ul></p>
+|**`download`**|boolean or string|true|Show/hide download icon from toolbar.  Possible values:<p><ul><li>true: Button is visible and clickable.</li><li>false: Button is not visible.</li><li>disabled: Button is visible, but not clickable.</li></ul></p>
 |**`downloadOptions`**|object|see ->|An object of options to change the output of the CSV file:<p><ul><li>`filename`: string</li><li>`separator`: string</li><li>`filterOptions`: object<ul><li>`useDisplayedColumnsOnly`: boolean</li><li>`useDisplayedRowsOnly`: boolean</li></ul></li></ul></p><p>Default Value:`{filename: 'tableDownload.csv', separator: ','}`</p>
 |**`draggableColumns`**|object|{}|An object of options describing how dragging columns should work. The options are: <p><ul><li>`enabled:boolean`: Indicates if draggable columns are enabled. Defaults to false.</li><li>`transitionTime:number`: The time in milliseconds it takes for columns to swap positions. Defaults to 300.</li></ul></p>To disable the dragging of a particular column, see the "draggable" option in the columns options. Dragging a column to a new position updates the columnOrder array and triggers the onColumnOrderChange callback.
 |**`elevation`**|number|4|Shadow depth applied to Paper component.
@@ -218,6 +237,7 @@ The component accepts the following props:
 |**`searchPlaceholder`**|string||Search text placeholder. [Example](https://github.com/gregnb/mui-datatables/blob/master/examples/customize-search/index.js)
 |**`searchProps`**|object|{}|Props applied to the search text box. You can set method callbacks like onBlur, onKeyUp, etc, this way. [Example](https://github.com/gregnb/mui-datatables/blob/master/examples/customize-search/index.js)
 |**`searchOpen`**|boolean|false|Initially displays search bar.
+|**`searchAlwaysOpen`**|boolean|false|Always displays search bar, and hides search icon in toolbar.
 |**`searchText`**|string||Search text for the table.
 |**`selectableRows`**|string|'multiple'|Indicates if rows can be selected. Options are "multiple", "single", "none".
 |**`selectableRowsHeader`**|boolean|true|Show/hide the select all/deselect all checkbox header for selectable rows.
@@ -236,6 +256,7 @@ The component accepts the following props:
 |**`tableBodyMaxHeight`**|string||CSS string for the height of the table (ex: '500px', '100%', 'auto').
 |**`textLabels`**|object||User provided labels to localize text.
 |**`viewColumns`**|boolean or string|true|Show/hide viewColumns icon from toolbar. Possible values:<p><ul><li>true: Button is visiable and clickable.</li><li>false: Button is not visible.</li><li>disabled: Button is visible, but not clickable.</li></ul></p>
+|**`storageKey`**|string|| save current state to local storage(Only browser).
 
 ## Customize Columns
 
@@ -350,15 +371,17 @@ Using Material-UI theme overrides will allow you to customize styling to your li
 ```js
 import React from "react";
 import MUIDataTable from "mui-datatables";
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 class BodyCellExample extends React.Component {
 
-  getMuiTheme = () => createMuiTheme({
-    overrides: {
+  getMuiTheme = () => createTheme({
+    components: {
       MUIDataTableBodyCell: {
-        root: {
-          backgroundColor: "#FF0000"
+        styleOverrides:{
+          root: {
+              backgroundColor: "#FF0000"
+          }
         }
       }
     }
@@ -367,9 +390,9 @@ class BodyCellExample extends React.Component {
   render() {
 
     return (
-      <MuiThemeProvider theme={this.getMuiTheme()}>
-        <MUIDataTable title={"ACME Employee list"} data={data} columns={columns} options={options} />
-      </MuiThemeProvider>
+		  <ThemeProvider theme={this.getMuiTheme()}>
+			  <MUIDataTable title={"ACME Employee list"} data={data} columns={columns} options={options} />
+		  </ThemeProvider>
     );
 
   }
@@ -382,7 +405,7 @@ class BodyCellExample extends React.Component {
 You can pass custom components to further customize the table:
 ```js
 import React from "react";
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import MUIDataTable, { TableFilterList } from "mui-datatables";
 
 const CustomChip = ({ label, onDelete }) => {
@@ -426,7 +449,14 @@ Supported customizable components:
  * `TableResize`
  * `TableToolbar`
  * `TableToolbarSelect`
- * `Tooltip`
+* `Tooltip`
+* `icons` - An object containing optional replacement icon classes for the actions
+  toolbar. [Example](https://github.com/gregnb/mui-datatables/blob/master/examples/customize-toolbar-icons/index.js)
+	* `SearchIcon`
+	* `DownloadIcon`
+	* `PrintIcon`
+	* `ViewColumnIcon`
+	* `FilterIcon`
 
 For more information, please see this [example](https://github.com/gregnb/mui-datatables/blob/master/examples/custom-components/index.js). Additionally, all examples can be viewed [live](https://codesandbox.io/s/github/gregnb/mui-datatables) at our CodeSandbox.
 

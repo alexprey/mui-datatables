@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import TableRow from '@material-ui/core/TableRow';
-import { makeStyles } from '@material-ui/core/styles';
+import TableRow from '@mui/material/TableRow';
+import { makeStyles } from 'tss-react/mui';
 
-const useStyles = makeStyles(
-  () => ({
-    root: {},
-  }),
-  { name: 'MUIDataTableHeadRow' },
-);
+const useStyles = makeStyles({ name: 'MUIDataTableHeadRow' })(() => ({
+  root: {},
+}));
 
 const TableHeadRow = ({ children }) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   return (
     <TableRow
